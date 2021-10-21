@@ -1,6 +1,6 @@
 img {
   height: 4rem;
-  filter: hue-rotate(16deg) saturate(6.5);
+  filter: hue-rotate(18deg) saturate(7.5) brightness(0.8);
 }
 
 .header {
