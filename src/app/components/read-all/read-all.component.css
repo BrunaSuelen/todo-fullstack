@@ -38,6 +38,8 @@ p {
 
 .actions {
   margin: 0.5rem;
+  display: flex;
+  justify-content: end;
 }
 
 .actions button {
