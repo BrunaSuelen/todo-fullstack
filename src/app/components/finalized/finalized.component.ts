@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Todo } from 'src/app/models/todo';
+import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
   selector: 'app-finalized',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FinalizedComponent implements OnInit {
 
-  constructor() { }
+  listFinished: Todo[] = [];
+
+  constructor(
+    private todoService: TodoService
+  ) { }
 
   ngOnInit(): void {
+    this.findAll();
   }
 
+  findAll(): void {
+    this.todoService.findAll().subscribe((resposta) => {
+      resposta.forEach(todo => {
+        if (todo.finalizado) this.listFinished.push(todo);
+      })
+    })
+  }
 }
