@@ -1,5 +1,6 @@
 img {
   height: 4rem;
+  filter: hue-rotate(16deg) saturate(6.5);
 }
 
 .header {
