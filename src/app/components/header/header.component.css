@@ -1,11 +1,10 @@
 img {
-  height: 4rem;
+  height: 3rem;
   filter: hue-rotate(18deg) saturate(7.5) brightness(0.8);
 }
 
 .header {
   justify-content: center;
-  height: 10%;
 }
 
 span {
