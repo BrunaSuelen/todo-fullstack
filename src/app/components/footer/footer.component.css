@@ -1,7 +1,14 @@
 .footer {
-  height: 5%;
+  background: #6b2bcc;
+  color: white;
   position: fixed;
   bottom: 0;
   justify-content: flex-end;
-  font-size: 1rem;
+  font-size: 0.8rem;
+  height: auto;
+}
+
+p {
+  margin-bottom: 0;
+  font-weight: 200;
 }
