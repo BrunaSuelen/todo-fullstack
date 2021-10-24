@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Todo } from 'src/app/models/todo';
 import { TodoService } from 'src/app/services/todo.service';
 
@@ -13,7 +14,8 @@ export class CreateComponent implements OnInit {
 
 
   constructor(
-    private todoService: TodoService
+    private todoService: TodoService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -46,6 +48,7 @@ export class CreateComponent implements OnInit {
     this.todoService.update(item).subscribe(() => {
       this.todoService.message('Task criada com sucesso!');
       this.initForm();
+      this.router.navigate(['/']);
     })
   }
 }

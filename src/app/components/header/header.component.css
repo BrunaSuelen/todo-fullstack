@@ -1,6 +1,7 @@
 img {
   height: 3rem;
   filter: hue-rotate(18deg) saturate(7.5) brightness(0.8);
+  cursor: pointer;
 }
 
 .header {
@@ -14,4 +15,5 @@ span {
 
 h1 {
   padding-left: 1.2rem;
+  cursor: pointer;
 }
