@@ -3,7 +3,8 @@ form.container {
   margin-top: 50px;
 }
 
-.field-width {
+.field-width,
+button {
   display: block;
   margin: 30px auto;
   min-width: 150px;
@@ -16,9 +17,14 @@ textarea {
 }
 
 @media (max-width: 600px) {
-  .field-width {
+  .field-width,
+  button {
     min-width: initial;
     margin: 20px;
     width: auto;
+  }
+
+  button {
+    width: calc(100% - 40px);
   }
 }
