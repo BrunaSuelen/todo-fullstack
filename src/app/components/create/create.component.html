@@ -1,1 +1,38 @@
-<p>create works!</p>
+<form [formGroup]="form" class="container">
+  <mat-checkbox class="field-width">Feito</mat-checkbox>
+
+  <mat-form-field class="field-width" appearance="legacy">
+    <mat-label>Título</mat-label>
+    <input
+      type="text"
+      matInput
+      [formControlName]="'titulo'"
+      autocomplete="off"
+      placeholder="Ex. Estudar matemática"
+      maxlength="50"
+    />
+    <mat-hint align="end">{{ form.value.titulo.length }} / 50</mat-hint>
+    <mat-error *ngIf="form.controls.titulo.hasError('required')">
+      Campo Obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="field-width" appearance="legacy">
+    <mat-label>Descrição</mat-label>
+    <textarea
+      matInput
+      [formControlName]="'descricao'"
+      autocomplete="off"
+      placeholder="Ex. Leitura das páginas 200..."
+      maxlength="250"
+    ></textarea>
+    <mat-hint align="end">{{ form.value.descricao.length }} / 256</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field class="field-width" appearance="legacy">
+    <mat-label>Finalizar em</mat-label>
+    <input matInput [matDatepicker]="picker" autocomplete="off" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</form>
