@@ -1,4 +1,8 @@
 <form [formGroup]="form" class="container">
+  <div class="badge">
+    <button mat-stroked-button color="primary" routerLink="/">Voltar</button>
+  </div>
+
   <mat-checkbox class="field-width">Feito</mat-checkbox>
 
   <mat-form-field class="field-width" appearance="legacy">
@@ -39,6 +43,9 @@
     />
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="form.controls.dataParaFinalizar.hasError('required')">
+      Campo Obrigatório
+    </mat-error>
   </mat-form-field>
 
   <button mat-raised-button color="primary" (click)="validate()">Salvar</button>
