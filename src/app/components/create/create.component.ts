@@ -44,8 +44,15 @@ export class CreateComponent implements OnInit {
       : this.todoService.message('O Formulário está inválido. Por favor verifique os campos');
   }
 
+  formatDate(dataParaFinalizar: string | Date): string {
+    const DATE = new Date(dataParaFinalizar);
+    return `${DATE.getDate()}/${DATE.getMonth()}/${DATE.getFullYear()}`
+  }
+
   save(item: Todo): void {
-    this.todoService.update(item).subscribe(() => {
+    item.dataParaFinalizar = this.formatDate(item.dataParaFinalizar);
+
+    this.todoService.create(item).subscribe(() => {
       this.todoService.message('Task criada com sucesso!');
       this.initForm();
       this.router.navigate(['/']);
