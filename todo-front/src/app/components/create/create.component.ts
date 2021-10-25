@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Todo } from 'src/app/models/todo';
 import { TodoService } from 'src/app/services/todo.service';
 
@@ -11,30 +11,46 @@ import { TodoService } from 'src/app/services/todo.service';
 })
 export class CreateComponent implements OnInit {
   form!: FormGroup;
-
+  taskId!: number;
+  task!: Todo;
 
   constructor(
     private todoService: TodoService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.getIdByParameter();
     this.initForm();
+  }
+
+  getTaskData(): void {
+    this.todoService.findById(this.taskId)
+      .subscribe((task: Todo) => this.task = task);
+  }
+
+  getIdByParameter(): void {
+    this.route.queryParams
+      .subscribe((params: Params) => {
+        this.taskId = params['id'];
+        this.getTaskData();
+      });
   }
 
   initForm(): void {
     this.form = new FormGroup({
-      titulo: new FormControl('', [
+      titulo: new FormControl(this.task.titulo || '', [
         Validators.maxLength(50),
         Validators.required,
       ]),
-      descricao: new FormControl('', [
+      descricao: new FormControl(this.task.descricao || '', [
         Validators.maxLength(250),
       ]),
-      dataParaFinalizar: new FormControl('', [
+      dataParaFinalizar: new FormControl(this.task.dataParaFinalizar || '', [
         Validators.required,
       ]),
-      finalizado: new FormControl(false)
+      finalizado: new FormControl(this.task.finalizado || false)
     })
   }
 
