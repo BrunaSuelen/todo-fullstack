@@ -1,17 +1,10 @@
-.container {
-  margin: auto;
-  width: 85%;
-}
-
 .content {
   width: 100%;
 }
 
 .badge {
-  margin-top: 1.5rem;
   display: flex;
   justify-content: left;
-  align-items: left;
 }
 
 .novo-to-do {

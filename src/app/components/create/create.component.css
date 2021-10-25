@@ -1,19 +1,22 @@
-form.container {
-  display: block;
-  margin-top: 50px;
+.badge {
+  display: flex;
+  justify-content: left;
+  margin: 0 auto;
 }
 
 .field-width,
-button {
+button.mat-raised-button {
   display: block;
-  margin: 30px auto;
-  min-width: 150px;
-  max-width: 500px;
   width: 100%;
+  margin: 30px auto;
 }
 
 textarea {
   height: 80px;
+}
+
+button.mat-raised-button {
+  margin-bottom: 5rem;
 }
 
 @media (max-width: 600px) {
@@ -24,7 +27,7 @@ textarea {
     width: auto;
   }
 
-  button {
+  button.mat-raised-button {
     width: calc(100% - 40px);
   }
 }
