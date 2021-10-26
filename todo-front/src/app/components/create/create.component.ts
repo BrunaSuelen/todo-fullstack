@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DateAdapter } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { Todo } from 'src/app/models/todo';
@@ -18,10 +19,12 @@ export class CreateComponent implements OnInit {
   constructor(
     private todoService: TodoService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dateAdapter: DateAdapter<any>
   ) { }
 
   async ngOnInit(): Promise<void> {
+    this.dateAdapter.setLocale('pt');
     await this.getIdByParameter();
     this.initForm();
   }
