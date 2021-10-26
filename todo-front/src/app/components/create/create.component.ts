@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 import { Todo } from 'src/app/models/todo';
 import { TodoService } from 'src/app/services/todo.service';
 
@@ -20,37 +21,49 @@ export class CreateComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  ngOnInit(): void {
-    this.getIdByParameter();
+  async ngOnInit(): Promise<void> {
+    await this.getIdByParameter();
     this.initForm();
   }
 
-  getTaskData(): void {
-    this.todoService.findById(this.taskId)
-      .subscribe((task: Todo) => this.task = task);
+  async getIdByParameter(): Promise<void> {
+    const PARAMS = await this.route.queryParams
+      .pipe(take(1))
+      .toPromise();
+
+    if (PARAMS['id']) {
+      this.taskId = PARAMS['id'];
+      await this.getTaskData();
+    }
   }
 
-  getIdByParameter(): void {
-    this.route.queryParams
-      .subscribe((params: Params) => {
-        this.taskId = params['id'];
-        this.getTaskData();
-      });
+  getTaskData(): Promise<Todo> {
+    return this.todoService
+      .findById(this.taskId)
+      .toPromise()
+      .then((task: Todo) => this.task = task);
+  }
+
+  parseStringInDate(date: any): Date {
+    const [DAY, MONTH, YEAR] = date.split('/');
+    return new Date(`${YEAR}-${MONTH}-${DAY}`);
   }
 
   initForm(): void {
+    const DATE = this.parseStringInDate(this.task?.dataParaFinalizar);
+
     this.form = new FormGroup({
-      titulo: new FormControl(this.task.titulo || '', [
+      titulo: new FormControl(this.task?.titulo || '', [
         Validators.maxLength(50),
         Validators.required,
       ]),
-      descricao: new FormControl(this.task.descricao || '', [
+      descricao: new FormControl(this.task?.descricao || '', [
         Validators.maxLength(250),
       ]),
-      dataParaFinalizar: new FormControl(this.task.dataParaFinalizar || '', [
+      dataParaFinalizar: new FormControl(DATE || '', [
         Validators.required,
       ]),
-      finalizado: new FormControl(this.task.finalizado || false)
+      finalizado: new FormControl(this.task?.finalizado)
     })
   }
 
