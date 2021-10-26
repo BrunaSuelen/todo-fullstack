@@ -4,7 +4,9 @@
       <button mat-stroked-button color="primary" routerLink="/">Voltar</button>
     </div>
 
-    <mat-checkbox class="field-width">Feito</mat-checkbox>
+    <mat-checkbox class="field-width" [formControlName]="'finalizado'"
+      >Feito</mat-checkbox
+    >
 
     <mat-form-field class="field-width" appearance="legacy">
       <mat-label>Título</mat-label>

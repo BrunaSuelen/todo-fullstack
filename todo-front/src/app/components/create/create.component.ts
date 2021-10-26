@@ -30,7 +30,7 @@ export class CreateComponent implements OnInit {
   }
 
   async getIdByParameter(): Promise<void> {
-    const PARAMS = await this.route.queryParams
+    const PARAMS = await this.route.params
       .pipe(take(1))
       .toPromise();
 
@@ -47,9 +47,11 @@ export class CreateComponent implements OnInit {
       .then((task: Todo) => this.task = task);
   }
 
-  parseStringInDate(date: any): Date {
-    const [DAY, MONTH, YEAR] = date.split('/');
-    return new Date(`${YEAR}-${MONTH}-${DAY}`);
+  parseStringInDate(date: any): Date | void {
+    if (date) {
+      const [DAY, MONTH, YEAR] = date.split('/');
+      return new Date(`${YEAR}-${MONTH}-${DAY}`);
+    }
   }
 
   initForm(): void {
