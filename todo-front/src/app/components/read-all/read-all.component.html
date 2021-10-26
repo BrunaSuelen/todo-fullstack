@@ -31,7 +31,7 @@
         <button mat-mini-fab color="primary" (click)="finalizar(item)">
           <mat-icon>done</mat-icon>
         </button>
-        <button mat-mini-fab color="accent">
+        <button mat-mini-fab color="accent" [routerLink]="['/editar', item.id]">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-mini-fab color="warn" (click)="delete(item.id)">

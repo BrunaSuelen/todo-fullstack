@@ -68,7 +68,7 @@ export class CreateComponent implements OnInit {
       dataParaFinalizar: new FormControl(DATE || '', [
         Validators.required,
       ]),
-      finalizado: new FormControl(this.task?.finalizado)
+      finalizado: new FormControl(this.task?.finalizado || false)
     })
   }
 
@@ -83,13 +83,21 @@ export class CreateComponent implements OnInit {
     return `${DATE.getDate()}/${DATE.getMonth()}/${DATE.getFullYear()}`
   }
 
-  save(item: Todo): void {
-    item.dataParaFinalizar = this.formatDate(item.dataParaFinalizar);
+  prepareTask(task: Todo): Todo {
+    task.id = this.taskId?.toString();
+    task.dataParaFinalizar = this.formatDate(task.dataParaFinalizar);
 
-    this.todoService.create(item).subscribe(() => {
-      this.todoService.message('Task criada com sucesso!');
-      this.initForm();
-      this.router.navigate(['/']);
-    })
+    return task;
+  }
+
+  save(task: Todo): void {
+    task = this.prepareTask(task);
+
+    this.todoService
+    [this.taskId ? 'update' : 'create'](task)
+      .subscribe(() => {
+        this.todoService.message(`Task ${this.taskId ? 'atualizada' : 'criada'} com sucesso!`);
+        this.router.navigate(['/']);
+      })
   }
 }
