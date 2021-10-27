@@ -35,7 +35,7 @@
 ## Execução
 
 **Front end (Angular)**<br />
-Rode o comando `ng serve` ou `npm start` para execuar a alicação Angular. Navegue para a rota `http://localhost:4200/` em seu browser.
+Rode o comando `ng serve` ou `npm start` para execuar a aplicação Angular. Navegue para a rota `http://localhost:4200/` em seu browser.
 
 **Back end (Java)**<br />
-No Spring Boot basta abrir o projeto e executar a API. Ela por default irá rodar na porta `http://localhost:8080/` no browser.
+No Spring Boot basta abrir o projeto e executar a API. Por default irá rodar na porta `http://localhost:8080/` no browser.
