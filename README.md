@@ -4,7 +4,7 @@
   <img width="35" alt="todo-logo" src="https://user-images.githubusercontent.com/55665877/138946855-29136ca2-c575-4c43-ac69-510e7b942739.png">
   <span>Todo Fullstack</span>
   <h4 align=center>
-    Projeto destinado para estudos do Angular.
+    Projeto destinada para prática de desenvolvimento com Angular 12.
     <br />
     <br />
     <img width="650"src="https://user-images.githubusercontent.com/55665877/138944982-2a04b8d8-8542-4a11-9e96-1b37a0d2d825.jpeg"/>
@@ -25,6 +25,7 @@
 - [`NodeJs 14.18.0`](https://nodejs.org/en/download/)
 - [`Angular 12.2.8`](https://angular.io/docs)
 - [`Typescript 4.4.3`](https://www.typescriptlang.org/)
+- [`Angular Material 12.2.11`](https://material.angular.io/guide/getting-started)
 
 **Back end**
 - [`Spring Tools Suit`](https://spring.io/tools)
